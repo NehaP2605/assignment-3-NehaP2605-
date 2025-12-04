@@ -143,6 +143,7 @@ cd "$FINDER_APP_DIR"
 make clean
 make
 cp ./writer ${OUTDIR}/rootfs/home
+echo "copied writer to ${OUTDIR}/rootfs/home"
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
