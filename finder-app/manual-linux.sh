@@ -141,7 +141,7 @@ sudo mknod -m 666 dev/console c 5 1
 echo "clean and build writer utility"
 cd "$FINDER_APP_DIR"
 make clean
-make
+make CROSS_COMPILE=aarch64-none-linux-gnu-
 cp ./writer ${OUTDIR}/rootfs/home
 echo "copied writer to ${OUTDIR}/rootfs/home"
 
