@@ -1,13 +1,13 @@
 #compiler selection
-CC := $(CROSS_COMPILE)g++
-CFLAGS ?= -std=c++17 -Wall -g
+CC := $(CROSS_COMPILE)gcc
+CFLAGS ?= -Wall -g
 LDFLAGS ?=
 
 $(info Using compiler : $(CC))
 
 #source and object files
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:.cpp=.o)
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
 TARGET = writer
 
 #default target
@@ -17,8 +17,8 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ)
 
-#compile cpp -> o
-%.o: %.cpp
+#compile c -> o
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #clean target
