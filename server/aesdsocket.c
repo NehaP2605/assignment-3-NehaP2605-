@@ -29,9 +29,7 @@ void cleanup() {
         file_fd = -1;
     }
     //delete the file
-    if (remove("/var/tmp/aesdsocketdata") != 0) {
-        syslog(LOG_ERR, " error deleting file /var/tmp/aesdsocketdata : %s", strerror(errno));
-    }
+    remove("/var/tmp/aesdsocketdata");
     //close syslog
     closelog();
 }
@@ -70,7 +68,7 @@ void handle_signal(int signo) {
     if(signo == SIGINT || signo == SIGTERM) {
         syslog(LOG_ERR, "Caught signal,exiting");
         stop_requested = 1;
-        cleanup();
+        shutdown(sock_fd, SHUT_RDWR);
     }
 }
 
@@ -233,13 +231,16 @@ int main(int args, char* argv[]) {
         sock_fd = -1;
         exit(EXIT_FAILURE);
     }
-
+    int client_fd = -1;
     // start accepting connections
     while(!stop_requested) {
         struct sockaddr sock_addr;
         socklen_t sock_len = sizeof(sock_addr);
-        int client_fd = accept(sock_fd, &sock_addr, &sock_len);
-        if(client_fd == -1) {
+        client_fd = accept(sock_fd, &sock_addr, &sock_len);
+        if(client_fd < 0) {
+            if (stop_requested) {
+                break;
+            }
             syslog(LOG_ERR,"accept error : %s", strerror(errno));
             cleanup();
             exit(EXIT_FAILURE);
@@ -262,6 +263,7 @@ int main(int args, char* argv[]) {
                 //error occured
                 cleanup();
                 free(packet);
+                close(client_fd);
                 exit(EXIT_FAILURE);
             }else if(len == 0) {
                 //client disconnected
@@ -269,11 +271,16 @@ int main(int args, char* argv[]) {
                 break;
             }
         }
+        close(client_fd);
         free(packet);
         syslog(LOG_INFO, "End---->Closed connection from %s:%s\n", host, serv);
 
     }
+    if (stop_requested) {
+        shutdown(client_fd, SHUT_RDWR);
+    }
     //clean up before returning
+    close(client_fd);
     cleanup();
     return 0;
 }

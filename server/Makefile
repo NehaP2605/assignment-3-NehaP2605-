@@ -1,6 +1,6 @@
 #compiler selection
 CC := $(CROSS_COMPILE)gcc
-CFLAGS ?= -Wall -g
+CFLAGS += -Wall -Werror -g
 
 $(info Using compiler : $(CC))
 
