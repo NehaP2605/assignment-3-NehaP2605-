@@ -1,0 +1,82 @@
+==6019== Memcheck, a memory error detector
+==6019== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==6019== Using Valgrind-3.25.1-4441567fbe-20250520 and LibVEX; rerun with -h for copyright info
+==6019== Command: ./aesdsocket
+==6019== Parent PID: 6017
+==6019== 
+--6019-- 
+--6019-- Valgrind options:
+--6019--    --error-exitcode=1
+--6019--    --leak-check=full
+--6019--    --show-leak-kinds=all
+--6019--    --track-origins=yes
+--6019--    --errors-for-leak-kinds=definite
+--6019--    --verbose
+--6019--    --log-file=valgrind-out.txt
+--6019-- Contents of /proc/version:
+--6019--   Linux version 6.17.0-8-generic (buildd@bos03-arm64-112) (aarch64-linux-gnu-gcc (Ubuntu 15.2.0-4ubuntu4) 15.2.0, GNU ld (GNU Binutils for Ubuntu) 2.45) #8-Ubuntu SMP PREEMPT_DYNAMIC Fri Nov 14 20:54:15 UTC 2025
+--6019-- 
+--6019-- Arch and hwcaps: ARM64, LittleEndian, v8-fhm-dpbcvadp-sha3-rdm-atomics-fp16-vfp16
+--6019-- Page sizes: currently 4096, max supported 65536
+--6019-- Valgrind library directory: /usr/libexec/valgrind
+--6019-- Reading syms from /home/nehap/Documents/practice/training/assignment/2/assignment-2-NehaP2605/server/aesdsocket
+--6019-- Reading syms from /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+--6019--   Considering /usr/lib/debug/.build-id/2e/606422f6b759ad1996b37bf936bcbf1e02d07a.debug ..
+--6019--   .. build-id is valid
+--6019-- Reading syms from /usr/libexec/valgrind/memcheck-arm64-linux
+--6019--    object doesn't have a dynamic symbol table
+--6019-- Scheduler: using generic scheduler lock implementation.
+--6019-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==6019== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-6019-by-nehap-on-???
+==6019== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-6019-by-nehap-on-???
+==6019== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-6019-by-nehap-on-???
+==6019== 
+==6019== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==6019== don't want to do, unless you know exactly what you're doing,
+==6019== or are doing some strange experiment):
+==6019==   /usr/bin/vgdb --pid=6019 ...command...
+==6019== 
+==6019== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==6019==   /path/to/gdb ./aesdsocket
+==6019== and then give GDB the following command
+==6019==   target remote | /usr/bin/vgdb --pid=6019
+==6019== --pid is optional if only one valgrind process is running
+==6019== 
+--6019-- REDIR: 0x403fa00 (ld-linux-aarch64.so.1:strlen) redirected to 0x580c5cb4 (???)
+--6019-- REDIR: 0x403efc0 (ld-linux-aarch64.so.1:strcmp) redirected to 0x580c5d08 (???)
+--6019-- REDIR: 0x403ef00 (ld-linux-aarch64.so.1:index) redirected to 0x580c5cdc (???)
+--6019-- Reading syms from /usr/libexec/valgrind/vgpreload_core-arm64-linux.so
+--6019-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so
+--6019-- Reading syms from /usr/lib/aarch64-linux-gnu/libc.so.6
+--6019--   Considering /usr/lib/debug/.build-id/75/44444e7eeafbb5a7ecaf94fc3ebebd2b986846.debug ..
+--6019--   .. build-id is valid
+--6019-- REDIR: 0x49822a0 (libc.so.6:memchr) redirected to 0x4870830 (_vgnU_ifunc_wrapper)
+--6019-- REDIR: 0x4985d40 (libc.so.6:strlen) redirected to 0x4870830 (_vgnU_ifunc_wrapper)
+--6019-- REDIR: 0x49824e0 (libc.so.6:memcpy) redirected to 0x4870830 (_vgnU_ifunc_wrapper)
+--6019-- REDIR: 0x4982ce0 (libc.so.6:memmove) redirected to 0x4870830 (_vgnU_ifunc_wrapper)
+--6019-- REDIR: 0x4982e80 (libc.so.6:memset) redirected to 0x4870830 (_vgnU_ifunc_wrapper)
+--6019-- REDIR: 0x4986300 (libc.so.6:rindex) redirected to 0x48ade84 (rindex)
+--6019-- REDIR: 0x498a7c0 (libc.so.6:__memset_zva64) redirected to 0x48b2e44 (memset)
+--6019-- REDIR: 0x497df2c (libc.so.6:malloc) redirected to 0x48a54e0 (malloc)
+--6019-- REDIR: 0x49e43c0 (libc.so.6:__memcpy_chk) redirected to 0x48b43e0 (__memcpy_chk)
+--6019-- REDIR: 0x497e704 (libc.so.6:free) redirected to 0x48a8580 (free)
+--6019-- REDIR: 0x4986bc0 (libc.so.6:strstr) redirected to 0x48b44ec (strstr)
+--6019-- REDIR: 0x4989280 (libc.so.6:__GI_memchr) redirected to 0x48affb0 (__GI_memchr)
+--6019-- REDIR: 0x4989800 (libc.so.6:__GI_memcpy) redirected to 0x48b0b90 (__GI_memcpy)
+--6019-- REDIR: 0x4983cc0 (libc.so.6:index) redirected to 0x48ae140 (index)
+--6019-- REDIR: 0x497eb64 (libc.so.6:realloc) redirected to 0x48ac700 (realloc)
+--6019-- REDIR: 0x498aa40 (libc.so.6:__GI_strlen) redirected to 0x48ae848 (__GI_strlen)
+--6019-- REDIR: 0x4982300 (libc.so.6:bcmp) redirected to 0x48b2580 (bcmp)
+--6019-- REDIR: 0x4985f24 (libc.so.6:strncmp) redirected to 0x48af264 (strncmp)
+--6019-- REDIR: 0x4983e40 (libc.so.6:strcmp) redirected to 0x48afd20 (strcmp)
+--6019-- REDIR: 0x4983d80 (libc.so.6:strchrnul) redirected to 0x48b3ba8 (strchrnul)
+--6019-- REDIR: 0x4989940 (libc.so.6:__GI_memmove) redirected to 0x48b33e4 (__GI_memmove)
+--6019-- REDIR: 0x49830c0 (libc.so.6:stpcpy) redirected to 0x48b26c8 (stpcpy)
+==6019== 
+==6019== HEAP SUMMARY:
+==6019==     in use at exit: 0 bytes in 0 blocks
+==6019==   total heap usage: 46 allocs, 46 frees, 247,068 bytes allocated
+==6019== 
+==6019== All heap blocks were freed -- no leaks are possible
+==6019== 
+==6019== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
