@@ -1,13 +1,13 @@
 #compiler selection
-CC := $(CROSS_COMPILE)gcc
-CFLAGS += -Wall -Werror -g
+CC ?= $(CROSS_COMPILE)gcc
+CFLAGS ?= -Wall -Werror -g
 
 $(info Using compiler : $(CC))
 
 #source and object files
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
-TARGET = aesdsocket
+TARGET ?= aesdsocket
 
 #default target
 all: $(TARGET)
