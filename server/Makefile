@@ -1,6 +1,7 @@
 #compiler selection
 CC ?= $(CROSS_COMPILE)gcc
 CFLAGS ?= -Wall -Werror -g
+LDFLAGS ?= -lpthread -lrt
 
 $(info Using compiler : $(CC))
 
