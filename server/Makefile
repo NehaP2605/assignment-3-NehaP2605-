@@ -1,6 +1,7 @@
 #compiler selection
 CC ?= $(CROSS_COMPILE)gcc
 CFLAGS ?= -Wall -Werror -g
+LDFLAGS ?= -lpthread -lrt
 
 $(info Using compiler : $(CC))
 
@@ -14,7 +15,7 @@ all: $(TARGET)
 
 #linking executables
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
 
 #compile c -> o
 %.o: %.c
